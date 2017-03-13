@@ -1,0 +1,9 @@
+<h2>{{movie.name}} </h2>
+
+<p>{{movie.premise }}</p>
+
+<img ng-src="{{ movie.image }}" class="detail-movie"/>
+
+<div layout="row" ng-repeat="link in movie.video" >
+    <div  youtube-iframe videoid="link.ur"></div>
+</div>

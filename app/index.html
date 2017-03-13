@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html ng-app="MyApp">
+
+<head>
+    <meta charset=UTF-8">
+    <title>Inicio</title>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="components/style/app.css">
+</head>
+
+<body ng-controller="FilmesController as ctr">
+
+    <md-toolbar  class="md-hue-1"  md-colors="{background: 'red'}">
+
+        <div  class="md-toolbar-tools" >
+            <h2 ui-sref="empty">RodrigoTube</h2>
+                <md-input-container layout="row"  md-no-float >
+                    <input type="search" ng-model="categories.items" placeholder="pesquisar" >
+                    <md-icon class="material-icons md-48 ic-black"> search </md-icon>
+                </md-input-container>
+            <md-button class="md-raised" ng-click="ctr.showDetail(categories.items)"  >Buscar</md-button>
+        </div>
+
+    </md-toolbar>
+
+    <div layout="row" layout-fill>
+            <section layout="column" layout-padding flex="15">
+                <div class="gray page-container">
+                    <md-list >
+
+                        <md-subheader>Categorias</md-subheader>
+                        <md-divider></md-divider>
+
+                        <ul ng-repeat="category in categories" >
+
+                            <p ng-click="ctr.showDetailSection(category)">{{category.name}}</p>
+
+                            <md-list-item ng-repeat="movie in category.items" ng-click="ctr.showDetail(movie)" >
+                                <img ng-src="{{movie.image}}" class="md-avatar" alt="{{movie.name}}" />
+                                <small>{{movie.name}}</small>
+                            </md-list-item>
+                        </ul>
+
+                    </md-list>
+                </div>
+            </section>
+
+            <section layout="column" class="videos"flex layout-padding >
+                <div class="gray page-container" >
+                    <ui-view></ui-view>
+                </div>
+            </section>
+    </div>
+
+
+
+<!--
+<div ng-controller="FilmesController">
+    <div ng-show="!isShowDetail"
+         ng-repeat="movie in movies"
+         ng-click="showDetail(movie)">
+        <h5>Name: {{movie.name}}</h5>
+        <p>Price: {{movie.price}}</p>
+        <img ng-src="{{movie.image}}" />
+    </div>
+    <div ng-show="isShowDetail">
+        <p>Detail</p>
+        {{movieSelected.name}} <br />
+        {{movieSelected.price}}
+        <button ng-click="closeDetail()">Close</button>
+    </div>
+</div>
+-->
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script src="libs/angular-ui-router.js"></script>
+    <script src="components/module/main.module.js"></script>
+    <script src="components/services/http.services.js"></script>
+    <script src="components/controllers/filmes.controller.js"></script>
+    <script src="components/controllers/detail.section.controller.js"></script>
+    <script src="components/controllers/detail.movie.controller.js"></script>
+    <script src="components/directives/youtube.directive.js"></script>
+
+
+
+</body>
+</html>
